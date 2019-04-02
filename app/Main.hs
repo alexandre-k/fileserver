@@ -1,7 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
-import qualified View (renderFilesToHtml)
+import View (renderFilesToHtml)
+import qualified Data.Text.Lazy as T
 
 
 import Web.Scotty
@@ -18,5 +19,9 @@ serveFiles = do
   html $ "hello"
 
 main :: IO ()
-main = scotty 3000 $
-  home
+main = do
+  files <- renderFilesToHtml
+  putStrLn $ T.unpack files
+
+-- main = scotty 3000 $
+--   home

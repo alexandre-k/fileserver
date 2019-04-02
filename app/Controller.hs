@@ -9,8 +9,8 @@ import qualified Data.Text.Lazy as T
 import System.Directory (getCurrentDirectory, listDirectory)
 
 
-getLocalFiles :: IO (FilePath, [FilePath])
+getLocalFiles :: IO (T.Text, T.Text)
 getLocalFiles = do
   currentDir <- getCurrentDirectory
   allFilesCurrentDir <- listDirectory currentDir
-  return (currentDir, allFilesCurrentDir)
+  return (T.pack $ show currentDir, T.pack $ show allFilesCurrentDir)
