@@ -3,6 +3,7 @@ module Main where
 
 import View (renderFilesToHtml)
 import qualified Data.Text.Lazy as T
+import qualified Text.Blaze.Html.Renderer.Text as RT
 
 
 import Web.Scotty
@@ -21,7 +22,7 @@ serveFiles = do
 main :: IO ()
 main = do
   files <- renderFilesToHtml
-  putStrLn $ T.unpack files
+  putStrLn $ T.unpack $ RT.renderHtml files
 
 -- main = scotty 3000 $
 --   home
